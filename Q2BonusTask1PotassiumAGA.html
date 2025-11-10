@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <style>
+            body 
+            {
+                text-align: center;
+                margin-top: 20%;
+                font-size: 25px;
+                font-family:'Courier New', Courier, monospace;
+            }
+        </style>
+        <h1> click here to change <br> the screen color ! </h1>
+        <script>
+            document.body.onclick = changeColor
+
+            function changeColor() 
+            {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            
+            document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+        }
+        </script>
+    </body>
+</html>

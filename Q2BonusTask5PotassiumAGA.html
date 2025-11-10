@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reaction Game</title>
+    <style>
+      body 
+      {
+        text-align: center;
+        font-family: 'Courier New', Courier, monospace;
+        margin-top: 50px;
+        color: white;
+        background-color: black;
+      }
+
+      #letter 
+      {
+        font-size: 100px;
+        margin: 20px;
+        color: rgb(78, 205, 255);
+      }
+
+      #result 
+      {
+        font-size: 18px;
+        margin-top: 10px;
+      }
+
+      #stats 
+      {
+        margin-top: 30px;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2> reaction game ( ˶°ㅁ°) !! </h2>
+    <p> press the key that matches the letter shown ! </p>
+
+    <div id="letter">A</div>
+    <div id="result"></div>
+
+    <div id="stats">
+      score: <span id="score">0</span>
+    </div>
+
+    <script>
+      const letterDisplay = document.getElementById("letter");
+      const resultDisplay = document.getElementById("result");
+      const scoreDisplay = document.getElementById("score");
+
+      let currentLetter = "";
+      let score = 0;
+
+      function randomLetter() 
+      {
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const index = Math.floor(Math.random() * letters.length);
+        return letters[index];
+      }
+
+      function newRound() 
+      {
+        currentLetter = randomLetter();
+        letterDisplay.textContent = currentLetter;
+        resultDisplay.textContent = "";
+      }
+
+      window.onload = function () 
+      {
+        newRound();
+      };
+
+      document.body.onkeypress = function (event) 
+      {
+        if (!currentLetter) return;
+
+        const keyPressed = event.key.toUpperCase();
+
+        if (keyPressed === currentLetter) 
+        {
+          resultDisplay.textContent = "✅ correct!";
+          score++;
+          scoreDisplay.textContent = score;
+          setTimeout(newRound, 1000);
+        } 
+
+        else 
+        {
+          resultDisplay.textContent = "❌ try again!";
+        }
+      };
+    </script>
+  </body>
+</html>
